@@ -241,7 +241,8 @@ const App: FC = () => {
           vapidKey: 'SuT4MFw7PRh1zFoSWXjyqZkd0U29gud-3j5aqy_yDwY'
         });
         if (token) {
-          console.log('FCM Token generated successfully');
+          console.log('FCM Token Generated');
+          // Save token to database under the user's profile
           await update(ref(db, `users/${uid}`), { fcmToken: token });
         }
       }
@@ -254,14 +255,19 @@ const App: FC = () => {
     if (user && user.uid && messaging) {
       setupFCM(user.uid);
       const unsubscribeOnMessage = onMessage(messaging, (payload) => {
-        console.log('Foreground message:', payload);
+        console.log('Foreground message received:', payload);
+        // If app is open, we can show a custom toast or standard alert
         if (payload.notification) {
-          alert(`${payload.notification.title}\n${payload.notification.body}`);
+          // Standard browser notification for foreground
+          new window.Notification(payload.notification.title || 'Notification', {
+            body: payload.notification.body,
+            icon: appSettings.logoUrl || APP_LOGO_URL
+          });
         }
       });
       return () => unsubscribeOnMessage();
     }
-  }, [user?.uid]);
+  }, [user?.uid, appSettings.logoUrl]);
 
   // Settings Listener
   useEffect(() => {
