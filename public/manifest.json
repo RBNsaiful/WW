@@ -1,0 +1,23 @@
+
+{
+  "short_name": "FF SHOP",
+  "name": "FF SHOP - Diamond & Premium Store",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/k2nGxqwY/1763225878291.jpg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/k2nGxqwY/1763225878291.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#7C3AED",
+  "background_color": "#0F172A",
+  "orientation": "portrait"
+}
